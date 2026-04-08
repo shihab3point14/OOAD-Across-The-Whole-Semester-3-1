@@ -1,0 +1,18 @@
+Latex Source code for JU CSE Report
+Please read following instructions ....
+
+Chapters    --> Add your report contents here
+
+figures    -->   Add your figures here
+
+pages      --> Add abstract, acknowledgement, and References 
+
+parameters  --> In this folder you can add your thesis information like
+               author's name, ID, degree, session, supervisor name
+
+ju_cse_report.sty  --> For changing this report template 
+                         Here, you can change Page type, margin, font type, size, line spacing and glossaries etc.
+
+ju_cse_report_Ref.bib  --> Add your references here 
+
+report.tex      --> change organization of the book 
