@@ -1,0 +1,13 @@
+Project Assumption
+---------------------------------
+Assumptions are conditions that are believed to be true for the successful development and operation of the system.
+
+1. Internet Availability Assumption----->It is assumed that vendors and customers will have access to a stable internet connection to use the platform.
+2. Legal Business Usage Assumption----->It is assumed that vendors will use the platform only to sell legal and permitted products and will follow local laws and regulations.
+3. Vendor Responsibility Assumption----->It is assumed that vendors are responsible for managing their own products, prices, inventory, and order fulfillment.
+4. Payment System Reliability Assumption----->It is assumed that integrated payment methods will function correctly and provide accurate transaction information.
+5. User Honesty Assumption----->It is assumed that vendors and customers will provide correct and truthful information during registration and transactions.
+6. Basic Technical Knowledge Assumption----->It is assumed that vendors have basic knowledge of using smartphones or web applications.
+7. System Usage Policy Assumption----->It is assumed that users will follow the platform’s terms, conditions, and usage policies.
+8. Single Platform Maintenance Assumption----->It is assumed that the system will be maintained and updated by the platform administrator.
+9. Browser Compatibility Assumption----->It is assumed that users will access the system using modern web browsers.

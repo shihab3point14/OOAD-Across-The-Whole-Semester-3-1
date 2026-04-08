@@ -1,0 +1,125 @@
+\chapter{PROCEDURE}
+\label{ch:procedure}
+
+This laboratory exercise focused on modeling the behavior of different systems using UML Sequence Diagrams. The procedure involved analyzing each scenario, identifying system participants, and visually representing the chronological interactions between actors and system components. The diagrams were created using the web-based modeling tool \textbf{sequenceDiagram.org}. The detailed procedure followed for designing the sequence diagrams is described below.
+
+\section{Step 1: Identify Participants}
+The first step in constructing a sequence diagram was identifying all the participants involved in the system interaction. Participants may include human actors, external systems, or internal system modules.
+
+\begin{itemize}
+    \item All relevant actors and objects involved in the scenario were listed.
+    \item Examples of actors include Teachers, Students, Principals, Customers, Sales Employees, Warehouse Employees, and Teaching Assistants.
+    \item System components such as databases, validation modules, payment processors, or system interfaces were also considered participants.
+    \item Each participant was represented by a \textbf{lifeline}, which appears as a vertical dashed line in the sequence diagram.
+    \item Participants were placed horizontally across the diagram in the order in which they appear in the interaction.
+\end{itemize}
+
+\section{Step 2: Establish the Timeline}
+Once participants were identified, the sequence of events was organized along a timeline.
+
+\begin{itemize}
+    \item Time in a sequence diagram flows \textbf{vertically downward}.
+    \item The top of the diagram represents the earliest interaction, while the bottom represents the latest interaction.
+    \item Interactions were grouped into logical phases when appropriate (for example: request phase, validation phase, processing phase, and response phase).
+    \item This structure helps clearly visualize how the system processes requests step by step.
+\end{itemize}
+
+\section{Step 3: Draw Messages}
+The communication between participants was represented through message arrows.
+
+\begin{itemize}
+    \item \textbf{Solid arrows} represent synchronous calls where the sender waits for a response.
+    \item \textbf{Open arrows} represent asynchronous messages where the sender does not wait for completion.
+    \item \textbf{Dashed arrows} represent return messages sent back to the caller.
+    \item Each message was labeled using the format: \texttt{operationName(argument1, argument2)}.
+    \item These messages represent actions such as submitting attendance, verifying prerequisites, processing payment, forwarding orders, or recording exam marks.
+\end{itemize}
+
+\section{Step 4: Add Activation Bars}
+Activation bars were used to represent the period during which a participant is actively processing a request.
+
+\begin{itemize}
+    \item Activation bars are shown as thin vertical rectangles on a participant’s lifeline.
+    \item They indicate that the participant is performing an operation or handling a message.
+    \item Nested activations were used when a participant called another component while still processing its own task.
+\end{itemize}
+
+\section{Step 5: Include Return Messages}
+Return messages were added to show responses or results being sent back to the calling participant.
+
+\begin{itemize}
+    \item These responses were illustrated using \textbf{dashed arrows}.
+    \item The returned information was labeled appropriately, such as confirmation messages, retrieved data, or calculated results.
+    \item Examples include returning enrollment confirmation, order status updates, or graded exam marks.
+\end{itemize}
+
+\section{Step 6: Add Interaction Fragments}
+To represent complex logic within the system, interaction fragments were incorporated into the sequence diagrams.
+
+\begin{itemize}
+    \item \textbf{alt (Alternative):} Represents conditional paths similar to an if-else structure.
+    \item \textbf{loop:} Used when a process repeats multiple times (e.g., adding or removing items from a shopping cart).
+    \item \textbf{opt (Optional):} Represents steps that may or may not occur depending on certain conditions.
+    \item \textbf{par (Parallel):} Shows processes that occur simultaneously, such as prerequisite and co-requisite verification.
+\end{itemize}
+
+\section{Step 7: Label and Annotate the Diagram}
+Finally, the diagrams were properly labeled and annotated to improve clarity and understanding.
+
+\begin{itemize}
+    \item Each diagram was given a descriptive title.
+    \item Sequence numbers were optionally added to show the order of interactions.
+    \item Notes and annotations were used where necessary to explain complex system behaviors or constraints.
+\end{itemize}
+
+\section{Scenario Implementations}
+
+\subsection{Scenario 1: School Attendance System}
+In this scenario, the sequence diagram models the workflow of a school attendance management system. Teachers log into the system and submit attendance records for students. The system validates the teacher’s role before allowing attendance submission. If a temporary teacher is assigned, the principal authorizes the assignment and the action is recorded in the audit log for accountability.
+
+The system then stores attendance records in the database. Older records may be archived to maintain system efficiency. If guardians need access to archived attendance data, they must submit a special access request that is reviewed and approved before the data is retrieved.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/Sequence Diagram/Attendance System.png}
+    \caption{Sequence Diagram for School Attendance System}
+\end{figure}
+
+\subsection{Scenario 2: Springfield University Enrollment System}
+This sequence diagram represents the student enrollment workflow at Springfield University. Students initiate the process by selecting courses and submitting an enrollment request. The system first checks academic constraints by verifying prerequisites and co-requisites for the selected courses.
+
+The system also ensures that the student does not exceed the maximum allowed limit of five academic units for the semester. If the academic conditions are satisfied, the system proceeds to financial verification where the student must complete the full tuition payment. Once payment is confirmed, the enrollment status is updated in the system database and a confirmation message is sent to the student.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/Sequence Diagram/University Enrollment.png}
+    \caption{Sequence Diagram for Springfield University Enrollment System}
+\end{figure}
+
+\subsection{Scenario 3: Online Shopping System (Paragraphs Corporation)}
+This scenario models the online shopping workflow used by customers of Paragraphs Corporation. The process begins when a customer browses the online store and adds products to a shopping cart. The system allows customers to repeatedly modify their cart by adding or removing items.
+
+Once the customer confirms the purchase, the system processes the order and generates an order record. The order details are forwarded to a sales employee for verification. After verification, the order is passed to a warehouse employee who prepares the items for shipment and updates the order status.
+
+During this process, the customer can independently check the order status through the system interface. This demonstrates asynchronous interaction where the customer can receive updates without interrupting the fulfillment process.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/Sequence Diagram/Online Shopping.png}
+    \caption{Sequence Diagram for Online Shopping System}
+\end{figure}
+
+\subsection{Scenario 4: Springfield University Examination Process}
+The final sequence diagram models the process of preparing, conducting, and grading university examinations. The process begins with the instructor preparing exam questions and notifying students about the exam schedule.
+
+The exam papers are reproduced and distributed to students during the examination session. After completing the exam, students submit their answer scripts to the instructor. The instructor then delegates the grading process to teaching assistants by providing both the answer scripts and the sample solutions.
+
+Teaching assistants evaluate the scripts and assign marks based on the provided solutions. After grading is completed, the results are returned to the instructor and recorded in the examination system. Finally, the graded answer papers are returned to students for review.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/Sequence Diagram/Exam Process.png}
+    \caption{Sequence Diagram for Springfield University Examination Process}
+\end{figure}
+
+\clearpage
