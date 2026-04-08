@@ -1,4 +1,0 @@
-% Course name
-Course Code: CSE 314\\
-Course Title: OBJECT ORIENTED ANALYSIS AND
-DESIGN LABORATORY
