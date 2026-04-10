@@ -6,12 +6,16 @@ A comprehensive Object Oriented Analysis and Design (OOAD) project for the cours
 
 This repository contains the structured documentation, UML diagrams, and modeling artifacts for a **Multi-Tenant E-Commerce Platform**. The platform is designed to handle multiple independent stores within a single application, emphasizing modularity, scalability, and robust design patterns.
 
-### Key Modeling Topics Covered:
+### Key Topics Covered:
 
-- **Use Case Diagrams**: Defining system boundaries, actors, and core functionalities.
-- **Extended Use Cases**: Detailed descriptions of complex user interactions and error handling.
-- **Class Diagrams (Domain Modeling)**: Establishing the object structure and relationships for the multi-tenant architecture.
-
+- **Functional Requirements**
+- **Non-Functional Requirements**
+- **Use Case Diagrams**
+- **Extended Use Cases**
+- **Domain Modeling**
+- **UML Class Diagram**
+- **Sequence Diagram**
+- **State Diagram**
 ---
 
 ## Team Members
