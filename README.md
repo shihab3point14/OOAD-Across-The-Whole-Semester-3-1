@@ -16,6 +16,7 @@ This repository contains the structured documentation, UML diagrams, and modelin
 - **UML Class Diagram**
 - **Sequence Diagram**
 - **State Diagram**
+- **ER Diagram**
 ---
 
 ## Team Members
