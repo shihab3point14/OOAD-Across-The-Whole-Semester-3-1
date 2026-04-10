@@ -1,0 +1,43 @@
+Risk Definition
+-----------------
+A risk is any potential issue that may negatively impact the system’s security, legality, performance, or user trust during development or operation.
+
+1.      ---->Illegal Product Listing Risk<------
+        Vendors may attempt to sell illegal products such as drugs, weapons, or restricted items through the platform.
+        Impact:
+        Legal issues, platform misuse, and damage to system credibility.
+
+2.      ---->Fake or Invalid Payment Risk<------
+        Customers may attempt to make payments using fake, invalid, or fraudulent money or payment methods.
+        Impact:
+        Financial loss and disputes between vendors and customers.
+
+3.      ---->Payment Dispute Risk<------
+        Conflicts may arise regarding payment confirmation, delayed payments, or incomplete transactions.
+        Impact:
+        Customer dissatisfaction and trust issues with the platform.
+
+4.      ---->Product Return and Refund Dispute Risk<------
+        Disagreements may occur between vendors and customers regarding product returns, refunds, or damaged goods.
+        Impact:
+        Increased complaints and operational complexity.
+
+5.      ---->Data Security and Privacy Risk<------
+        There is a risk of unauthorized access to vendor or customer data if proper security controls are not implemented.
+        Impact:
+        Data breaches and loss of user trust.
+
+6.      ---->Vendor Misuse Risk<------
+        Some vendors may misuse the platform by providing false product information or misleading customers.
+        Impact:
+        Reduced reliability and customer confidence.
+
+7.      ---->User Adoption Risk<------
+        Vendors may prefer continuing business through social media instead of adopting a new platform.
+        Impact:
+        Low platform usage and limited success.
+8.      ----> Fraudulent Order and Cancellation Risk <----
+        Users may place false or spam orders, such as booking Cash on Delivery (COD) items with no intention of accepting delivery, or repeatedly creating and canceling 
+        orders to disrupt operations.
+        Impact:
+        Financial loss due to wasted shipping costs, inventory mismanagement (locking stock from real buyers), and increased operational overhead.

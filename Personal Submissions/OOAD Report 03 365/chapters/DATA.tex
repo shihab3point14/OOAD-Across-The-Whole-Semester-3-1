@@ -1,0 +1,127 @@
+\chapter{My Contributions (Functional Modules: Inventory Management and Analytical Dashboard)}
+\label{sec:inventory-analytics}
+
+In this project, I was responsible for the design, analysis, and documentation of two critical functional modules for the Multi-Tenant E-Commerce System: 
+
+\begin{enumerate}
+    \item \textbf{Inventory Management}
+    \item \textbf{Analytical Dashboard (Analytics Board)}
+\end{enumerate}
+
+These modules are essential for enabling vendors to efficiently manage their online storefronts, monitor stock levels, and make informed business decisions using data-driven insights.
+
+\section{Inventory Management (IM-07)}
+\label{subsec:inventory-management}
+
+\textbf{Description:}  
+The Inventory Management module provides vendors with comprehensive control over their product lifecycle and stock accuracy. It ensures that the digital storefront remains synchronized with physical inventory, preventing overselling and enhancing operational efficiency.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Lab_03/U_1.png}
+    \caption{Inventory Management table}
+    \label{fig:analytics}
+\end{figure}
+\textbf{Key Features and Requirements:}  
+\begin{itemize}
+    \item Vendors can input and store product names, SKUs, prices, and quantities in a centralized database (IM-07.1).
+    \item Stock levels are automatically decremented when customers place orders, updating the vendor dashboard in real-time (IM-07.2).
+    \item Vendors can edit or remove products, with instant reflection on the storefront (IM-07.3).
+    \item Validation rules prevent stock from falling below zero during manual updates (IM-07.4).
+    \item Vendors can set stock thresholds and receive automated notifications when items reach low stock levels (IM-07.5).
+\end{itemize}
+
+\textbf{User Story:}  
+\begin{quote}
+\textbf{US-07.1: Product and Stock Lifecycle Management} \\
+As a Vendor, I want to add, update, and monitor my product stock levels with real-time automated syncing, so that I can prevent overselling and maintain an accurate online store.
+\end{quote}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Lab_03/U_2.png}
+    \caption{Inventory Management (User Story)}
+    \label{fig:analytics}
+\end{figure}
+
+\textbf{Acceptance Criteria:}
+\begin{itemize}
+    \item Products are added with mandatory SKU and quantity fields.
+    \item Stock levels decrease immediately after a successful customer checkout.
+    \item Vendors receive a dashboard alert when items reach the defined "Low Stock" threshold.
+\end{itemize}
+
+\textbf{Professional Significance:}  
+The Inventory Management module is crucial for ensuring smooth business operations and avoiding stock-related issues. It helps vendors maintain credibility with customers by preventing order failures due to stock discrepancies. This module also reduces manual effort and provides automated alerts, allowing vendors to focus on growth strategies rather than routine stock tracking.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\textwidth]{figures/Lab_03/1_1_1.png}
+    \hspace{0.01\textwidth}
+    \includegraphics[width=0.32\textwidth]{figures/Lab_03/1_2.png}
+    \hspace{0.01\textwidth}
+    \includegraphics[width=0.32\textwidth]{figures/Lab_03/1_3.png}
+    \caption{Inventory Management Module: (a) Product list and stock entry interface, (b) real-time stock update after order placement, (c) low-stock alert and inventory monitoring dashboard.}
+    \label{fig:inventory}
+\end{figure}
+
+
+\section{Analytical Dashboard (AB-08)}
+\label{subsec:analytics-dashboard}
+
+\textbf{Description:}  
+The Analytical Dashboard module translates raw sales data into actionable business insights through interactive visualizations. Vendors can monitor sales performance, revenue trends, and product popularity to make informed decisions that drive revenue growth.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Lab_03/U_3.png}
+    \caption{Analytical Dashboard table}
+    \label{fig:analytics}
+\end{figure}
+\textbf{Key Features and Requirements:}  
+\begin{itemize}
+    \item Display total sales, revenue, and order counts in real-time (AB-08.1).
+    \item Generate a ranked list of best-selling products with sales counts and revenue per item (AB-08.2).
+    \item Render data using bar charts (revenue trends) and pie charts (product distribution) (AB-08.3).
+    \item Provide a date-picker utility to filter all visualizations by a user-defined timeframe (AB-08.4).
+\end{itemize}
+
+\textbf{User Story:}  
+\begin{quote}
+\textbf{US-08.1: Sales Data Visualization and Insights} \\
+As a Vendor, I want to view visual charts and filtered reports of my sales performance, so that I can identify trends and determine which products are driving my revenue.
+\end{quote}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Lab_03/U_4.png}
+    \caption{Inventory Management(User Story)}
+    \label{fig:analytics}
+\end{figure}
+
+\textbf{Acceptance Criteria:}
+\begin{itemize}
+    \item Dashboard displays real-time key performance indicators (KPIs).
+    \item Visual charts (Bar/Pie) accurately represent the stored sales data.
+    \item Filtering by date updates all charts and lists dynamically without requiring a full page reload.
+\end{itemize}
+
+\textbf{Professional Significance:}  
+This module empowers vendors to make strategic business decisions by providing insights into sales trends, high-performing products, and revenue generation. It helps identify which products are popular and which need promotional support. By visualizing sales data, the dashboard reduces reliance on manual calculations, increases operational efficiency, and provides a clear understanding of business health.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/Lab_03/D_1.png}
+    \hspace{0.02\textwidth}
+    \includegraphics[width=0.45\textwidth]{figures/Lab_03/1_1.png}
+
+    \vspace{0.4cm}
+
+    \includegraphics[width=0.45\textwidth]{figures/Lab_03/D_2.png}
+    \hspace{0.02\textwidth}
+    \includegraphics[width=0.45\textwidth]{figures/Lab_03/D_3.png}
+
+    \caption{Analytical Dashboard Module: (a) real-time KPI overview, (b) revenue trend bar chart, (c) product distribution pie chart, (d) filtered sales report by date range.}
+    \label{fig:analytics}
+\end{figure}
+
+
+Together, the Inventory Management and Analytical Dashboard modules form the backbone of the vendor’s operational workflow. The inventory module ensures accurate product availability, while the analytics module provides data-driven insights that enhance decision-making and profitability. Both modules are essential for professional e-commerce management and reflect my individual contribution to the project.
+
+\clearpage
