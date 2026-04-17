@@ -1,24 +1,55 @@
 \chapter{REPORT} \label{ch:procedure}
-\section{Functional Requirements:}
+\section{Functional Requirements}
 
 \subsection{Vendor Subscription, Registration and Login}
 This system handles the complete onboarding process for vendors joining the platform. It includes a registration form where vendors provide business details and upload legal documents (Trade License, E-TIN). Upon successful registration, vendors select and pay for a subscription plan (Basic or Professional) through integrated payment gateways. The login system implements Two-Factor Authentication (2FA) using OTP sent to email or phone, ensuring secure access to vendor dashboards. Each vendor receives a unique tenant ID and subdomain for their isolated store.
 
-
+\begin{itemize}
+    \item \textbf{FR-1.1:} The system shall allow vendors to register by submitting business details and uploading verification documents (Trade License, E-TIN).
+    \item \textbf{FR-1.2:} The system shall allow vendors to select and process payment for a subscription plan (Basic or Professional).
+    \item \textbf{FR-1.3:} The system shall enforce Two-Factor Authentication (2FA) via email or SMS OTP during vendor login.
+    \item \textbf{FR-1.4:} The system shall automatically provision a unique tenant database and subdomain for the vendor upon successful registration and payment. \textit{[Maps to UC: Vendor Registration]}
+\end{itemize}
 
 \subsection{Discount, Offers and Theme Customization}
 This system enables vendors to create promotional campaigns and personalize their storefront appearance. Vendors can create percentage-based discounts (e.g., 20\% off), fixed-amount discounts, and "Buy X Get Y" offers (e.g., Buy 2 Get 1 Free). They can set start/end dates and usage limits (e.g., first 50 customers). The theme customization feature allows vendors to upload logos, select brand colors, choose layout templates, and customize navigation menus—all with live preview before publishing changes to their live store.
 
+\begin{itemize}
+    \item \textbf{FR-2.1:} The system shall allow vendors to configure percentage-based, fixed-amount, and conditional ("Buy X Get Y") discount rules.
+    \item \textbf{FR-2.2:} The system shall allow vendors to define validity periods (start and end dates) and usage limits for all promotional offers.
+    \item \textbf{FR-2.3:} The system shall provide an interface for vendors to upload brand logos, select color palettes, and modify layout templates.
+    \item \textbf{FR-2.4:} The system shall generate a live visual preview of theme modifications before they are published to the public storefront. \textit{[Maps to UC: Customize Store]}
+\end{itemize}
 
-\subsection{Payment gateway system}
+\subsection{Payment Gateway System}
 This system processes customer payments for orders placed on vendor stores. It integrates with multiple payment gateways including bKash, Nagad, Visa, and MasterCard, as well as supporting Cash on Delivery (COD). Customers select their preferred method during checkout. For online payments, the system redirects to the gateway and waits for confirmation before finalizing the order. Payment statuses (Paid, Failed, Pending) are tracked and updated accordingly. The system also generates transaction logs for audit purposes.
+
+\begin{itemize}
+    \item \textbf{FR-3.1:} The system shall provide customers with checkout options for bKash, Nagad, Visa, MasterCard, and Cash on Delivery (COD).
+    \item \textbf{FR-3.2:} The system shall securely redirect users to third-party payment gateways for online transactions.
+    \item \textbf{FR-3.3:} The system shall automatically update the order status to "Paid," "Failed," or "Pending" based on the webhook response from the payment gateway.
+    \item \textbf{FR-3.4:} The system shall generate and securely store immutable transaction logs for all payment attempts. \textit{[Maps to UC: Make Payment]}
+\end{itemize}
 
 \subsection{Inventory Management and Analytics}
 This module allows vendors to manage their product stock efficiently. Vendors can add new products, update stock quantities, set reorder levels, and receive low stock alerts. The system tracks stock movements (sales, restocks, adjustments) and maintains accurate inventory counts. Vendors can view inventory valuation, monitor stock turnover rates, and generate inventory reports. The module ensures that each vendor's inventory data remains isolated within their own tenant database, preventing data leakage between competing businesses.
 
-\subsection{Customer Feedback, Product ratings and reviews}
+\begin{itemize}
+    \item \textbf{FR-4.1:} The system shall allow vendors to add, modify, and delete product listings within their isolated tenant database.
+    \item \textbf{FR-4.2:} The system shall automatically decrement stock quantities upon successful order placement.
+    \item \textbf{FR-4.3:} The system shall trigger automated low-stock alerts to the vendor dashboard when inventory falls below predefined reorder levels.
+    \item \textbf{FR-4.4:} The system shall generate and display inventory valuation and stock turnover reports on the vendor analytics dashboard. \textit{[Maps to UC: Add Products/Inventory Control]}
+\end{itemize}
+
+\subsection{Customer Feedback, Product Ratings and Reviews}
 This module enables customers to share their product experiences and helps vendors build trust. After purchasing a product, verified customers can submit star ratings (1 to 5 stars) and written reviews, optionally with photos. Reviews are displayed on product pages along with average ratings. Vendors can view pending reviews, approve or reject inappropriate content, and respond to customer feedback. The system tracks helpful votes and provides review analytics (average rating, distribution, response rates) to help vendors improve their products and customer satisfaction.
 
+\begin{itemize}
+    \item \textbf{FR-5.1:} The system shall allow verified purchasers to submit a numerical rating (1 to 5 stars) and a textual review with optional image uploads.
+    \item \textbf{FR-5.2:} The system shall dynamically calculate and display the aggregate average rating for each product on the storefront.
+    \item \textbf{FR-5.3:} The system shall provide vendors with moderation tools to approve, reject, or reply to customer reviews.
+    \item \textbf{FR-5.4:} The system shall aggregate review data to display response rates and rating distributions on the vendor analytics dashboard. \textit{[Maps to UC: Review Products]}
+\end{itemize}
 
 \section{Non-Functional Requirements}
 
@@ -32,97 +63,222 @@ Metric: The Analytical Board and Inventory Management systems must handle concur
 Metric: Given that this is a subscription-based "Independent Storefront" model, the system must guarantee 99.9\% uptime. If the Payment Gateway or the Database-per-Tenant service fails, it must have a failover mechanism so vendors don't lose sales during peak promotional hours.
 
 \section{User Stories}
+This section outlines the system requirements from the perspective of the end-users, ensuring that the platform delivers tangible value to vendors, customers, and administrators.
 
-\subsection{User Story for Multi-Tenant Architecture and Secure Vendor Management}
+\begin{table}[htbp]
+\centering
+\caption{System User Stories, Acceptance Criteria, and Priorities}
+\label{tab:user_stories}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{0.08\linewidth}|p{0.38\linewidth}|p{0.38\linewidth}|p{0.08\linewidth}|}
+\hline
+\textbf{ID} & \textbf{User Story} & \textbf{Acceptance Criteria} & \textbf{Priority} \\ \hline
 
-As an \textbf{entrepreneur (vendor)}, I want to register my business and subscribe to the platform to create my own digital storefront, so that I can manage products, customers, and orders online. The system should ensure that each vendor’s data is stored in an isolated database, preventing access by other vendors. Additionally, secure authentication and verification mechanisms must be implemented to protect vendor accounts and business information.
+\textbf{US-01} & \textbf{As an entrepreneur (vendor)}, I want to register my business, pay for a subscription, and securely log in, \textbf{so that} the platform automatically creates an isolated digital storefront for me. & 
+\textbullet~Verify email/phone using Two-Factor Authentication (2FA).\newline
+\textbullet~Process subscription payment successfully before provisioning.\newline
+\textbullet~Ensure database is strictly isolated from all other tenants. & High \\ \hline
 
-\subsection{User Story for Comprehensive Store Operations and Inventory Management}
+\textbf{US-02} & \textbf{As a vendor}, I want to manage my catalog and customize my storefront from a central dashboard, \textbf{so that} I can efficiently run my online business and run promotional campaigns. & 
+\textbullet~Add, update, and delete products with real-time stock sync.\newline
+\textbullet~Apply custom themes/layouts to the public storefront.\newline
+\textbullet~Create conditional discount rules . & High \\ \hline
 
-As a \textbf{vendor}, I want to manage my store operations through a centralized dashboard, so that I can easily control inventory, create promotional offers, track sales analytics, and customize the visual appearance of my storefront. The system should provide real-time inventory updates and operational tools, enabling vendors to efficiently manage their online business from a single platform.
+\textbf{US-03} & \textbf{As a customer}, I want to add items to my cart and choose between online payment gateways or Cash on Delivery, \textbf{so that} I can securely complete my purchase. & 
+\textbullet~Support local gateways (bKash, Nagad, Cards) and COD.\newline
+\textbullet~Calculate accurate shipping costs via logistics APIs.\newline
+\textbullet~Decrement exact inventory from vendor's database upon confirmation. & High \\ \hline
 
-\subsection{User Story for Integrated Checkout, Payment, and Order Fulfillment}
+\textbf{US-04} & \textbf{As a verified customer}, I want to leave a star rating and a written review on products I have received, \textbf{so that} I can share my experience and help other buyers. & 
+\textbullet~Only allow reviews for "Delivered" order statuses.\newline
+\textbullet~Accurately recalculate and display average rating.\newline
+\textbullet~Allow vendor to view and moderate reviews via dashboard. & Medium \\ \hline
 
-As a \textbf{customer}, I want to complete purchases using multiple payment options such as online payment or Cash on Delivery, so that I can choose the most convenient payment method. The system should also integrate with third-party delivery services to provide real-time order tracking, allowing both customers and vendors to monitor the shipment status easily.
+\textbf{US-05} & \textbf{As a system administrator}, I want to view a high-level dashboard of all registered vendors and system metrics, \textbf{so that} I can manage subscriptions and enforce policies. & 
+\textbullet~View total active tenants and overall platform revenue.\newline
+\textbullet~Suspend/revoke tenant access for violations or failed renewals. & High \\ \hline
+
+\textbf{US-06} & \textbf{As a customer}, I want to track my order status in real-time, \textbf{so that} I know exactly when my package will arrive. & 
+\textbullet~Provide a tracking ID upon order dispatch.\newline
+\textbullet~Integrate with third-party logistics to show real-time updates. & Medium \\ \hline
+
+\textbf{US-07} & \textbf{As a vendor}, I want to view sales reports and inventory analytics on my dashboard, \textbf{so that} I can make data-driven decisions for my business. & 
+\textbullet~Display daily, weekly, and monthly sales graphs.\newline
+\textbullet~Alert vendor when inventory drops below a defined threshold. & Medium \\ \hline
+
+\textbf{US-08} & \textbf{As a vendor}, I want to send promotional notifications to my customers, \textbf{so that} I can drive repeat sales and increase engagement. & 
+\textbullet~Allow vendors to draft and schedule email/SMS notifications. & Low \\ \hline
+
+\end{tabular}
+\end{table}
 
 \section{Use Case Diagram}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{figures/UseCaseDiagaram.png}
-    \caption{Use Case Diagram for Multi-Tenants E-Commerce System}
-    \label{fig:placeholder}
+   \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/Final seq diagram/admin uc.png}}
+    \caption{UML Use Case Diagram for System Administration and Tenant Management.}
+    \label{fig:usecase_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+   \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{figures/Final seq diagram/vendor uc 1 (2).pdf}}
+    \caption{UML Use Case Diagram for Vendor Onboarding and Storefront Customization.}
+    \label{fig:usecase_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+   \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/Final seq diagram/vendor uc 2.png}}
+    \caption{UML Use Case Diagram for Vendor Inventory, Offers, and Analytics Management.}
+    \label{fig:usecase_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+   \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{figures/Final seq diagram/customer uc_cropped.pdf}}
+    \caption{UML Use Case Diagram representing Customer Interactions and Order Fulfillment.}
+    \label{fig:usecase_diagram}
 \end{figure}
 
 \section{Use Case Specifications}
 
 \subsection{Vendor Registration and Store Creation}
+\textbf{Use Case Name:} Vendor Registration and Store Creation\\
+\textbf{Actor}: Vendor (Entrepreneur)\\
+\textbf{Description:} Allows entrepreneurs to register their business, subscribe to the platform, and create an independent digital storefront with isolated data storage.\\
+\textbf{Preconditions:} Vendor has valid business and contact information. Vendor has internet access.
 
-\textbf{Use Case Name:} Vendor Registration and Store Creation
+\vspace{0.2cm}
+\textbf{Main Flow:} 
+\begin{enumerate}
+    \item Vendor enters business registration details and uploads necessary documents (Trade License, E-TIN).
+    \item Vendor selects a subscription plan (Basic or Professional).
+    \item Vendor completes account verification via email/OTP.
+    \item Vendor is redirected to the payment gateway to process the subscription fee.
+    \item Upon successful payment, the platform automatically provisions a unique tenant ID and an isolated database.
+    \item Platform activates the digital storefront and grants dashboard access.
+\end{enumerate}
 
-\textbf{Actor}: Vendor (Entrepreneur)
+\textbf{Alternative Flows:}
+\begin{itemize}
+    \item \textbf{4a. Payment Failure:} If the payment transaction fails or is cancelled, the system saves the registration as "Pending" and prompts the vendor to retry payment. The storefront is not provisioned.
+    \item \textbf{1a. Duplicate Email:} If the vendor enters an email already in use, the system prompts them to log in or reset their password.
+\end{itemize}
 
-\textbf{Description:} Allows entrepreneurs to register their business, subscribe
-to the platform, and create an independent digital storefront with
-isolated data storage.
+\vspace{0.2cm}
+\textbf{Postconditions:} Vendor account is created and verified. Independent storefront is activated with isolated data storage.
 
-\textbf{Preconditions:} Vendor has valid business and contact information. -
-Vendor has internet access.
 
-\begin{comment}
-\textbf{Main Flow:} 1. Vendor enters business registration details. 2. Vendor
-selects a subscription plan. 3. Vendor completes account verification
-(email/OTP). 4. Platform creates a digital storefront with isolated
-database.
-\end{comment}
-
-\textbf{Postconditions:} Vendor account is created and verified. - Independent
-storefront is activated with isolated data storage.
-
+\vspace{0.5cm}
 \subsection{Store Operations and Inventory Management}
+\textbf{Use Case Name:} Store Operations and Inventory Management\\
+\textbf{Actor:} Vendor\\
+\textbf{Description:} Allows vendors to manage store operations through a centralized dashboard including product management, inventory updates, promotions, analytics, and storefront customization.\\
+\textbf{Preconditions:} Vendor account exists. Vendor is logged into the platform and 2FA is verified.
 
-\textbf{Use Case Name:} Store Operations and Inventory Management
+\vspace{0.2cm}
+\textbf{Main Flow:} 
+\begin{enumerate}
+    \item Vendor accesses the centralized dashboard.
+    \item Vendor navigates to the Inventory section to add new product listings or update existing stock quantities.
+    \item Vendor navigates to the Promotions section to configure percentage-based or fixed discounts.
+    \item Vendor views sales analytics and stock turnover reports.
+    \item Vendor saves all changes.
+    \item System updates the vendor's isolated database and instantly reflects changes on the live storefront.
+\end{enumerate}
 
-\textbf{Actor:} Vendor
+\textbf{Alternative Flows:}
+\begin{itemize}
+    \item \textbf{2a. Invalid Product Data:} If the vendor enters negative values for price or stock, the system blocks the update and displays an error message highlighting the invalid fields.
+\end{itemize}
 
-\textbf{Description:} Allows vendors to manage store operations through a
-centralized dashboard including product management, inventory updates,
-promotions, analytics, and storefront customization.
+\vspace{0.2cm}
+\textbf{Postconditions:} Store products, inventory, and promotions are updated. Storefront configuration changes are applied securely within the tenant's database.
 
-\textbf{Preconditions:} Vendor account exists. - Vendor is logged into the
-platform.
 
-\begin{comment}    
-\textbf{Main Flow:} 1. Vendor accesses the dashboard. 2. Vendor adds or updates
-product listings and inventory. 3. Vendor creates promotional offers or
-discounts. 4. Vendor views sales analytics and customizes storefront
-appearance.
-\end{comment}
-
-\textbf{Postconditions:} Store products, inventory, and promotions are
-updated. - Storefront configuration changes are applied.
-
+\vspace{0.5cm}
 \subsection{Checkout, Payment, and Order Tracking}
+\textbf{Use Case Name:} Product Purchase and Order Fulfillment\\
+\textbf{Actor:} Customer\\
+\textbf{Description:} Allows customers to purchase products using multiple payment methods and track order delivery through integrated logistics services.\\
+\textbf{Preconditions:} Customer selects products. Products are available in stock.
 
-\textbf{Use Case Name:} Product Purchase and Order Fulfillment
+\vspace{0.2cm}
+\textbf{Main Flow:} 
+\begin{enumerate}
+    \item Customer adds products to the shopping cart and proceeds to checkout.
+    \item Customer enters shipping and contact details.
+    \item System calculates total price including delivery charges via logistics API integration.
+    \item Customer selects a payment method (e.g., bKash, Nagad, Visa, or Cash on Delivery).
+    \item System redirects to the respective payment gateway (if online payment is selected).
+    \item Upon successful payment, the system confirms the order, decrements the vendor's inventory, and generates an invoice.
+    \item System provides the customer with a live delivery tracking ID.
+\end{enumerate}
 
-\textbf{Actor:} Customer
+\textbf{Alternative Flows:}
+\begin{itemize}
+    \item \textbf{4a. Cash on Delivery (COD):} If the customer selects COD, the system bypasses the payment gateway, confirms the order immediately, and sets the payment status to "Pending (COD)".
+    \item \textbf{5a. Gateway Timeout/Failure:} If the online payment fails, the system redirects the customer back to the checkout page to select an alternative payment method without clearing their cart.
+    \item \textbf{6a. Out of Stock During Checkout:} If another user purchases the last item before this transaction completes, the system halts the checkout, alerts the user, and initiates a refund if payment was captured.
+\end{itemize}
 
-\textbf{Description:} Allows customers to purchase products using multiple payment
-methods and track order delivery through integrated logistics services.
+\vspace{0.2cm}
+\textbf{Postconditions:} Order is recorded securely in the system. Inventory is updated. Customer and vendor can track the delivery status.
 
-\textbf{Preconditions:} Customer selects products. - Products are available in
-stock.
 
-\begin{comment} 
-\textbf{Main Flow:} 1. Customer adds products to the shopping cart. 2. Customer
-proceeds to checkout and enters delivery details. 3. Customer selects
-payment method (online payment or Cash on Delivery). 4. Order is
-confirmed and sent for delivery.
-\end{comment}
+\vspace{0.5cm}
+\subsection{Customer Ratings and Reviews}
+\textbf{Use Case Name:} Customer Ratings and Reviews\\
+\textbf{Actor:} Customer\\
+\textbf{Description:} Allows verified customers to submit a star rating and written review for purchased products, which vendors can then moderate or respond to.\\
+\textbf{Preconditions:} The customer has successfully purchased and received the product.
 
-\textbf{Postconditions:} Order is recorded in the system. - Customer and vendor
-can track the delivery status.
+\vspace{0.2cm}
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item Customer navigates to their order history and selects "Write a Review."
+    \item Customer selects a star rating (1-5) and enters textual feedback.
+    \item Customer submits the review.
+    \item System verifies the purchase record against the database.
+    \item System updates the product's average rating and displays the review on the public storefront.
+\end{enumerate}
+
+\textbf{Alternative Flows:}
+\begin{itemize}
+    \item \textbf{4a. Unverified Purchase:} If the system cannot verify the purchase history for that user, it prevents submission and displays an error message.
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Postconditions:} The product rating is updated, and the review is visible to other users.
+
+
+\vspace{0.5cm}
+\subsection{Platform Administration and Monitoring}
+\textbf{Use Case Name:} Platform Administration and Monitoring\\
+\textbf{Actor:} System Admin\\
+\textbf{Description:} Allows the platform administrator to monitor overall system health, manage vendor subscriptions, and enforce platform policies.\\
+\textbf{Preconditions:} Admin is successfully logged in with high-level administrative privileges.
+
+\vspace{0.2cm}
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item Admin logs into the central administrative dashboard.
+    \item Admin views platform-wide metrics (total active tenants, revenue, server health).
+    \item Admin selects a specific vendor account to review their subscription status.
+    \item Admin issues a suspension or warning if the vendor violates platform policies.
+    \item System restricts the vendor's access and disables their storefront.
+\end{enumerate}
+
+\textbf{Alternative Flows:}
+\begin{itemize}
+    \item \textbf{4a. Subscription Renewal Override:} Admin manually extends a vendor's subscription if there was a billing error on the platform's end.
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{Postconditions:} Platform policies are enforced, and overall system health is maintained.
+
 \section{UML Class Diagram}
 
 \begin{figure}[H]
@@ -136,12 +292,13 @@ can track the delivery status.
 
 \section{Sequence Diagram}
 
-\subsection{Registration & Login Process Sequence}
+\subsection{Registration \& Login Process Sequence}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{figures/1. Vendor Login.pdf}
-    \caption{Registration & Login Process Diagram}
+    % Change 1.2 to 1.1 or 1.3 to adjust exactly how far it pushes into the margins
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/seq diagram/seq1.pdf}}
+    \caption{Registration \& Login Process Diagram}
     \label{fig:delivery_tracking}
 \end{figure}
 
@@ -150,9 +307,9 @@ can track the delivery status.
 
 \begin{figure}[H] 
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/3. Vendor Discount and offer management.pdf}
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{figures/seq diagram/seq 2.pdf}}
     % \includesvg{sqv3}
-    \caption{Discount & Offer Management Diagram}
+    \caption{Discount \& Offer Management Diagram}
     \label{fig:order_placement}
 \end{figure}
 
@@ -160,7 +317,7 @@ can track the delivery status.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{figures/5. Vendor Inventory.pdf}
+    \makebox[\textwidth][c]{\includegraphics[width=.9\textwidth]{figures/seq diagram/seq 3.pdf}}
     \caption{Vendor Inventory Management Sequence Diagram}
     \label{fig:vendor_registration}
 \end{figure}
@@ -169,7 +326,7 @@ can track the delivery status.
 
 \begin{figure}[H]
     \centering
-   \includegraphics[width=\linewidth]{figures/2. Product order and delicvary.pdf}
+   \makebox[\textwidth][c]{\includegraphics[width=1.35\textwidth]{figures/seq diagram/seq 4.pdf}}
     \caption{Payment Processing Sequence Diagram}
     \label{fig:Product Order to Delivery Process diagram}
 \end{figure}
@@ -178,7 +335,7 @@ can track the delivery status.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{figures/4. Customer Rating and feedback.pdf}
+     \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/seq diagram/seq 5.pdf}}
     \caption{Rating,Review,Feedback Sequence Diagram}
     \label{fig:product_management}
 \end{figure}
